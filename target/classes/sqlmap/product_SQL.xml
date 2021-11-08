@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="shop">
+	<select id="selectProducts" resultType="ProductVO">
+		SELECT * FROM PRODUCT
+	</select>
+	
+	<select id="selectProduct" parameterType="string" resultType="ProductVO">
+		SELECT * FROM PRODUCT WHERE PRODUCTID = #{productId}
+	</select>
+	
+	<insert id="insertProduct" parameterType="ProductVO">
+		INSERT INTO PRODUCT
+		VALUES(#{productId},#{pname},#{unitPrice},#{description},#{category},#{manufacturer},
+		#{unitsInStock},#{condition},#{filename})
+	</insert>
+	
+	<update id="updateProduct" parameterType="ProductVO">
+		UPDATE PRODUCT
+		   SET PNAME = #{pname}, UNITPRICE = #{unitPrice}, DESCRIPTION = #{description},
+		       CATEGORY = #{category}, MANUFACTURER = #{manufacturer}, UNITSINSTOCK = #{unitsInStock},
+		       CONDITION = #{condition}, FILENAME = #{filename}
+		 WHERE PRODUCTID = #{productId}
+	</update>
+
+	<update id="updateProductNoFile" parameterType="ProductVO">
+		UPDATE PRODUCT
+		   SET PNAME = #{pname}, UNITPRICE = #{unitPrice}, DESCRIPTION = #{description},
+		       CATEGORY = #{category}, MANUFACTURER = #{manufacturer}, UNITSINSTOCK = #{unitsInStock},
+		       CONDITION = #{condition}
+		 WHERE PRODUCTID = #{productId}
+	</update>
+	
+	<delete id="deleteProduct" parameterType="string">
+		DELETE FROM PRODUCT WHERE PRODUCTID = #{productId}
+	</delete>
+</mapper>
