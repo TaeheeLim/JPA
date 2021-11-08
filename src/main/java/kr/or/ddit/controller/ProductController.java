@@ -88,6 +88,9 @@ public class ProductController {
 
 		return mav;
 	}
+	
+	
+	
 
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public ModelAndView updateProduct(ModelAndView mav, String id) {
